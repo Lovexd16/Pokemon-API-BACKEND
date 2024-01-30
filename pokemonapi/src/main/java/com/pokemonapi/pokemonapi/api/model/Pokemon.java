@@ -3,6 +3,7 @@ package com.pokemonapi.pokemonapi.api.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+//Skapar Pokemon entiteten med det som jag vill spara i databasen
 @Entity
 public class Pokemon {
     private String pokemonName;

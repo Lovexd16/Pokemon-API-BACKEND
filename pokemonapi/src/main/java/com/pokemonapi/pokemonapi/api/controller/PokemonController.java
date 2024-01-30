@@ -41,7 +41,7 @@ public class PokemonController {
         return ResponseEntity.ok("Du släppte pokemon med id " + pokemonId);
     }
     
-
+    //GetMapping för att kolla om specifik pokemon finns i databasen eller inte
     @GetMapping("/look-for-pokemon")
     public ResponseEntity<Boolean> lookForPokemon(@RequestParam int pokemonId) {
         boolean found = pokemonService.lookForPokemon(pokemonId);
