@@ -2,6 +2,7 @@ package com.pokemonapi.pokemonapi.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import com.pokemonapi.pokemonapi.api.model.Pokemon;
 import com.pokemonapi.pokemonapi.service.PokemonService;
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class PokemonController {
 
     private PokemonService pokemonService;
@@ -23,17 +25,17 @@ public class PokemonController {
 
     //PostMapping för att spara en pokemon i databas
     @PostMapping("/catch-pokemon")
-    public Pokemon catchPokemon(@RequestBody Pokemon pokemon) {
+    public ResponseEntity<String> catchPokemon(@RequestBody Pokemon pokemon) {
+        pokemonService.catchPokemon(pokemon);
         System.out.println("Du fångade " + pokemon);
-        return pokemonService.catchPokemon(pokemon);
+        return ResponseEntity.ok("Du fångade " + pokemon.getPokemonName() + "!");
     }
 
     //DeleteMapping för att ta bort en pokemon från databasen
     @DeleteMapping("/release-pokemon")
-    public ResponseEntity<String> releasePokemon(@RequestParam Integer pokemonId) {
-        System.out.println("Du släppte pokemonen med id " + pokemonId);
+    public ResponseEntity<String> releasePokemon(@RequestParam int pokemonId) {
         pokemonService.releasePokemon(pokemonId);
-
+        System.out.println("Du släppte pokemonen med id " + pokemonId);
         return ResponseEntity.ok("Du släppte pokemon med id " + pokemonId);
     }
 
