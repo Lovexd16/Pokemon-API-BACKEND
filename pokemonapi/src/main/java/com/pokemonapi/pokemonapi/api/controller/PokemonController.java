@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,10 +34,18 @@ public class PokemonController {
 
     //DeleteMapping för att ta bort en pokemon från databasen
     @DeleteMapping("/release-pokemon")
-    public ResponseEntity<String> releasePokemon(@RequestParam int pokemonId) {
+    public ResponseEntity<String> releasePokemon(@RequestBody Pokemon pokemon) {
+        int pokemonId = pokemon.getPokemonId();
         pokemonService.releasePokemon(pokemonId);
         System.out.println("Du släppte pokemonen med id " + pokemonId);
         return ResponseEntity.ok("Du släppte pokemon med id " + pokemonId);
+    }
+    
+
+    @GetMapping("/look-for-pokemon")
+    public ResponseEntity<Boolean> lookForPokemon(@RequestParam int pokemonId) {
+        boolean found = pokemonService.lookForPokemon(pokemonId);
+        return ResponseEntity.ok(found);
     }
 
 }

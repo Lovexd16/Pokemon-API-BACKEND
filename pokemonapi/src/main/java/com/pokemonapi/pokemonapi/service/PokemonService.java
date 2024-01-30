@@ -24,4 +24,8 @@ public class PokemonService {
        pokemonRepository.deleteById(pokemonId);
     }
 
+    public boolean lookForPokemon(int pokemonId) {
+        return pokemonRepository.existsById(pokemonId);
+    }
+
 }
