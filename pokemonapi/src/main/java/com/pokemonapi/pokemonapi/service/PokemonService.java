@@ -1,5 +1,7 @@
 package com.pokemonapi.pokemonapi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,11 @@ public class PokemonService {
     //Kolla om pokemon finns i databasen eller inte
     public boolean lookForPokemon(int pokemonId) {
         return pokemonRepository.existsById(pokemonId);
+    }
+
+    //Lista av alla pokemon som är sparade i databasen
+    public List<Pokemon> getCaughtPokemon() {
+        return (List<Pokemon>) pokemonRepository.findAll();
     }
 
 }
