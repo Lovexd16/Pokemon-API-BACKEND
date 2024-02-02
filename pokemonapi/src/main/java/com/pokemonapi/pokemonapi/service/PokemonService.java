@@ -19,22 +19,22 @@ public class PokemonService {
         this.pokemonRepository = pokemonRepository;
     }
 
-    //Sparar pokemon i databasen
+    //Sparar hela pokemon objektet i databasen (namn & id)
     public Pokemon catchPokemon(Pokemon pokemon) {
         return pokemonRepository.save(pokemon);
     }
 
-    //Tar bort pokemon från databasen
+    //Tar bort pokemon från databasen med hjälp av id
     public void releasePokemon(Integer pokemonId) {
        pokemonRepository.deleteById(pokemonId);
     }
 
-    //Kolla om pokemon finns i databasen eller inte
+    //Kolla om en pokemon finns i databasen eller inte genom id
     public boolean lookForPokemon(int pokemonId) {
         return pokemonRepository.existsById(pokemonId);
     }
 
-    //Lista av alla pokemon som är sparade i databasen
+    //Lista av alla pokemon som är sparade i databasen med findAll
     public List<Pokemon> getCaughtPokemon() {
         return (List<Pokemon>) pokemonRepository.findAll();
     }

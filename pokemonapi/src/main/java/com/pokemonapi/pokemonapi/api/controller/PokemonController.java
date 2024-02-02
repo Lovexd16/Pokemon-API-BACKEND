@@ -42,7 +42,7 @@ public class PokemonController {
         return "Du släppte pokemonen med id " + pokemonId;
     }
     
-    //GetMapping för att kolla om specifik pokemon finns i databasen eller inte
+    //GetMapping för att kolla om specifik pokemon finns i databasen eller inte med hjälp av id
     @GetMapping("/look-for-pokemon")
     public boolean lookForPokemon(@RequestParam int pokemonId) {
         return pokemonService.lookForPokemon(pokemonId);
